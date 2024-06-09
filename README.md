@@ -192,3 +192,15 @@ fetch(`https://api.telegram.org/bot<YOUR_BOT_TOKEN_HERE>/pinChatMessage`, {
 ```
 
 Replace `<YOUR_BOT_TOKEN_HERE>` and `<YOUR_CHAT_ID_HERE>` with your bot token and chat ID respectively. Also, replace `<MESSAGE_ID_HERE>` with the ID of the message you want to manipulate.
+### using the script file 
+```javascript
+// Example Usage:
+const bot = new TelegramBot('<YOUR_BOT_TOKEN_HERE>', '<YOUR_CHAT_ID_HERE>');
+bot.sendMessage('Hello, world!');
+bot.deleteMessage(<MESSAGE_ID_HERE>);
+bot.readMessages();
+bot.editMessage(<MESSAGE_ID_HERE>, 'New Text');
+bot.replyToMessage('Your reply text', <MESSAGE_ID_HERE>);
+bot.sendPoll('Your question?', ['Option_1', 'Option_2', 'Option_3', 'Option_4']);
+bot.pinMessage(<MESSAGE_ID_HERE>);
+```
