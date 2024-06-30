@@ -195,6 +195,10 @@ fetch(`https://api.telegram.org/bot<YOUR_BOT_TOKEN_HERE>/pinChatMessage`, {
 To send images, use the following code snippet:
 
 ```javascript
+// from html element screenshot
+const canvas = await html2canvas(<element>);
+const base64Data = await canvas.toDataURL('image/png');
+
 // from image base64 data
 const base64Data = '<YOUR_BASE64_DATA_HERE>';
 
