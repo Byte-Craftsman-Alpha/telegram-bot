@@ -190,7 +190,41 @@ fetch(`https://api.telegram.org/bot<YOUR_BOT_TOKEN_HERE>/pinChatMessage`, {
 })
 .catch(error => console.error(error));
 ```
+### Send image
 
+To send images, use the following code snippet:
+
+```javascript
+// from image base64 data
+const base64Data = '<YOUR_BASE64_DATA_HERE>';
+
+const blob = new Blob([
+  new Uint8Array(
+    Array.from(atob(base64Data.split(',')[1]).split('').map(c => c.charCodeAt(0)))
+  )
+], { type: 'image/png' });
+
+// from image url
+const blob = fetch('https://example.com/image.png').then(response => response.blob());
+
+// send image
+fetch('https://api.telegram.org/bot<YOUR_BOT_TOKEN_HERE>/sendPhoto', {
+  method: 'POST',
+  body: new FormData()
+    .append('chat_id', <YOUR_CHAT_ID_HERE>)
+    .append('caption', 'Your caption here')
+    .append('photo', blob, 'screenshot.png')
+})
+.then(response => response.json())
+.then(data => {
+  if (data.ok) {
+    console.log('Photo sent successfully:', data.result);
+  } else {
+    console.error('Error sending photo:', data.description);
+  }
+})
+.catch(error => console.error('Error sending photo:', error));
+```
 Replace `<YOUR_BOT_TOKEN_HERE>` and `<YOUR_CHAT_ID_HERE>` with your bot token and chat ID respectively. Also, replace `<MESSAGE_ID_HERE>` with the ID of the message you want to manipulate.
 ### using the script file 
 ```javascript
